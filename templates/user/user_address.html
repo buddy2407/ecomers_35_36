@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-4">
+    <h3 class="my-4 border-bottom pb-1">Address Book <a href="{% url 'save_user_address' %}" class="btn btn-success btn-sm float-right "><i class="fa fa-plus"></i></a></h3>
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'user/user_side_bar.html' %}
+        </div>
+        <div class="col-md-9">
+        <div class="row">
+            {% for address in address %}
+            <div class="col-md-4">
+                <div class="card {% if address.status %} border-secondary shadow  {% endif %}">
+                    <div class="card-body ">{{address.address}}</div>
+                    {% if address.status %}
+                        <div class="card-footer">
+                            <i class="fa fa-check-circle text-success"></i>
+                        </div>
+                    {%endif%}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

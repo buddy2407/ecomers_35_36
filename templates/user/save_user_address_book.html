@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'user/user_side_bar.html' %}
+        </div>
+        <div class="col-md-9">
+            {% if msg %}
+			<p class="text-success">{{msg}}</p>
+			{% endif %}
+           <div class="table-responsive">
+            <table class="table table-bordered">
+                <form method="post">
+                    {% csrf_token %}
+                    {{form.as_table}}
+                    <tr>
+						<td colspan="2">
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</td>
+					</tr>
+                </form>
+            </table>
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

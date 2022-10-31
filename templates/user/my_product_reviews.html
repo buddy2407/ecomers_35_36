@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'user/user_side_bar.html' %}
+        </div>
+        <div class="col-md-9">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Product Title</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Review Text</th>
+                        <th>Review Rating</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reviews in my_reviews%}
+                    <tr>
+                        <td><a href="{% url 'product_details' reviews.product.id reviews.product.id %}">{{reviews.product.title}}</a></td>
+                        <td><img src="{{reviews.product.productattributes_set.first.image.url}}" width="50px" height="50px"></td>
+                        <td>{{reviews.product.productattributes_set.first.price}}</td>
+                        <td>{{reviews.review_text}}</td>
+                        <td>{{reviews.review_rating}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
